@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"encoding/base64"
-	"github.com/go-leo/design-pattern/prototype"
 	"github.com/go-leo/gox/errorx"
+	"github.com/go-leo/prototype"
 	"github.com/google/uuid"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/assert"
@@ -480,10 +480,10 @@ func TestFloatCloner(t *testing.T) {
 	var overflowErr prototype.Error
 	assert.ErrorAs(t, err, &overflowErr)
 
-	var tgtInt16 uint16
-	err = prototype.Clone(&tgtInt16, srcFloat32)
+	var tgtUint16 uint16
+	err = prototype.Clone(&tgtUint16, srcFloat32)
 	assert.NoError(t, err)
-	assert.EqualValues(t, srcFloat32, tgtInt16)
+	assert.EqualValues(t, uint16(srcFloat32), tgtUint16)
 
 	var tgtFloat32 float32
 	err = prototype.Clone(&tgtFloat32, srcFloat32)
@@ -500,7 +500,7 @@ func TestFloatCloner(t *testing.T) {
 	tgtInt = 0
 	err = prototype.Clone(&tgtInt, srcFloat64)
 	assert.NoError(t, err)
-	assert.EqualValues(t, srcFloat64, tgtInt)
+	assert.EqualValues(t, int(srcFloat64), tgtInt)
 
 	srcFloat64 = 300.5
 	tgtInt8 = 0
@@ -508,10 +508,10 @@ func TestFloatCloner(t *testing.T) {
 	var e prototype.Error
 	assert.ErrorAs(t, err, &e)
 
-	tgtInt16 = 0
-	err = prototype.Clone(&tgtInt16, srcFloat64)
+	tgtUint16 = 0
+	err = prototype.Clone(&tgtUint16, srcFloat64)
 	assert.NoError(t, err)
-	assert.EqualValues(t, srcFloat64, tgtInt16)
+	assert.EqualValues(t, uint16(srcFloat64), tgtUint16)
 
 	tgtFloat32 = 0
 	err = prototype.Clone(&tgtFloat32, srcFloat64)

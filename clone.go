@@ -68,6 +68,36 @@ func DisableDeepClone() Option {
 	}
 }
 
+func EqualFold(f func(t, s string) bool) Option {
+	return func(o *options) {
+		o.EqualFold = f
+	}
+}
+
+func IntToTime(f func(i int64) time.Time) Option {
+	return func(o *options) {
+		o.IntToTime = f
+	}
+}
+
+func StringToTime(f func(s string) (time.Time, error)) Option {
+	return func(o *options) {
+		o.StringToTime = f
+	}
+}
+
+func TimeToInt(f func(t time.Time) int64) Option {
+	return func(o *options) {
+		o.TimeToInt = f
+	}
+}
+
+func TimeToString(f func(t time.Time) string) Option {
+	return func(o *options) {
+		o.TimeToString = f
+	}
+}
+
 func GetterPrefix(p string) Option {
 	return func(o *options) {
 		o.GetterPrefix = p
