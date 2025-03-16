@@ -340,7 +340,7 @@ func floatCloner(g *cloneContext, labels []string, tgtVal, srcVal reflect.Value,
 }
 
 /*
-stringCloner 克隆float类型
+stringCloner 克隆string类型
 string ----> ClonerFrom
 string ----> string
 string ----> []byte
@@ -432,10 +432,10 @@ bytesCloner 克隆[]byte类型
 []byte ----> []byte
 []byte ----> string(base64)
 []byte ----> any([]byte)
-string ----> bool(strconv.ParseBool)
-string ----> int(strconv.ParseInt)
-string ----> uint(strconv.ParseUint)
-string ----> float(strconv.ParseFloat)
+[]byte ----> bool(strconv.ParseBool)
+[]byte ----> int(strconv.ParseInt)
+[]byte ----> uint(strconv.ParseUint)
+[]byte ----> float(strconv.ParseFloat)
 []byte ----> pointer
 []byte ----> struct
 */
